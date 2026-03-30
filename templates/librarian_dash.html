@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+
+{% block body %}
+    <div id="main">
+        <div id="background-canvas">
+        <div id="canvas">
+          <div id="librarian-dash-body">
+            <br/>
+            {% include 'searchbar.html' %}
+            <br/>
+            <h1 class="headings" style="text-align: center;">Pending Book Requests</h1>
+            <br/>
+            <div id="trans-table">
+                {% if requests %}
+                <table class="table align-middle">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="col-sm-1">S. No</th>
+                      <th scope="col" class="col-sm-4">Book Name</th>
+                      <th scope="col" class="col-sm-2">User ID</th>
+                      <th scope="col" class="col-sm-2">Date Requested</th>
+                      <th scope="col" class="col-sm-3">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for book in requests %}
+                    <tr>
+                      <th scope="row">{{loop.index}}</th>
+                      <td>{{book.title}}</td>
+                      <td>{{book.user_id}}</td>
+                      <td><p id = "date">{{book.date_requested}}</p></td>
+                      <td><a class="btn btn-info" href="/view/{{book.book_id}}" role = "button">View</a>
+                      <a class="btn btn-success" href="/issue/{{book.checkout_id}}" role="button">Issue</a>
+                      <a class="btn btn-danger" href="/reject/{{book.checkout_id}}" role="button">Reject</a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                {% else %}
+                <p>No pending books to be issued.</p>
+                {% endif %}
+            </div>
+            <br/>
+            <br/>
+            <h2 class="headings" style="text-align: center;">Issued Books</h2>
+            <div id="trans-table">
+              {% if issued %}
+              <table class="table align-middle">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="col-sm-1">S. No</th>
+                      <th scope="col" class="col-sm-4">Book Name</th>
+                      <th scope="col" class="col-sm-2">User ID</th>
+                      <th scope="col" class="col-sm-2">Date Issued</th>
+                      <th scope="col" class="col-sm-3">Action</th>
+                    </tr>
+                  </thead>
+                    <tbody>
+                      {% for book in issued %}
+                      <tr>
+                        <th scope="row">{{loop.index}}</th>
+                        <td>{{book.title}}</td>
+                        <td>{{book.user_id}}</td>
+                        <td><p id = "date">{{book.date_issued}}</p></td>
+                        <td><a class="btn btn-info" href="/view/{{book.book_id}}" role = "button">View</a>
+                        <a class="btn btn-danger" href="/revoke/{{book.checkout_id}}" role="button">Revoke</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p>No issued books</p>
+                {% endif %}
+            </div>
+              <br/>
+              <br/>
+              <h2 class="headings" style="text-align: center;">Rejected Books</h2>
+              <div id="trans-table">
+                {% if rejected %}
+                <table class="table align-middle">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="col-sm-1">S. No</th>
+                      <th scope="col" class="col-sm-4">Book Name</th>
+                      <th scope="col" class="col-sm-2">User ID</th>
+                      <th scope="col" class="col-sm-2">Date Rejected</th>
+                      <th scope="col" class="col-sm-3">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                        {% for book in rejected %}
+                        <tr>
+                          <th scope="row">{{loop.index}}</th>
+                          <td>{{book.title}}</td>
+                          <td>{{book.user_id}}</td>
+                          <td><p id = "date">{{book.date_rejected}}</p></td>
+                          <td><a class="btn btn-info" href="/view/{{book.book_id}}" role = "button">View</a>
+                          <a class="btn btn-success" href="/issue/{{book.checkout_id}}" role="button">Issue</a></td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                  </table>
+                {% else %}
+                <p>No rejected books</p>
+                {% endif %}
+            </div>
+            <br/>
+            <br/>
+            <h2 class="headings" style="text-align: center;">Revoked Books</h2>
+            <div id="trans-table">
+              {% if revoked %}
+              <table class="table align-middle">
+                <thead>
+                  <tr>
+                    <th scope="col" class="col-sm-1">S. No</th>
+                    <th scope="col" class="col-sm-4">Book Name</th>
+                    <th scope="col" class="col-sm-2">User ID</th>
+                    <th scope="col" class="col-sm-2">Date Revoked</th>
+                    <th scope="col" class="col-sm-3">Action</th>
+                  </tr>
+                </thead>                
+                    <tbody>
+                      {% for book in revoked %}
+                      <tr>
+                        <th scope="row">{{loop.index}}</th>
+                        <td>{{book.title}}</td>
+                        <td>{{book.user_id}}</td>
+                        <td><p id = "date">{{book.date_revoked}}</p></td>
+                        <td><a class="btn btn-info" href="/view/{{book.book_id}}" role = "button">View</a>
+                        <a class="btn btn-success" href="/issue/{{book.checkout_id}}" role="button">Issue</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>
+              {% else %}
+              <p>No revoked books</p>
+              {% endif %}
+          </div>
+            <br/>
+            <br/>
+            <h2 class="headings" style="text-align: center;">Returned Books</h2>
+            <div id="trans-table">
+              {% if returned %}
+              <table class="table align-middle">
+                <thead>
+                  <tr>
+                    <th scope="col" class="col-sm-1">S. No</th>
+                    <th scope="col" class="col-sm-4">Book Name</th>
+                    <th scope="col" class="col-sm-2">User ID</th>
+                    <th scope="col" class="col-sm-2">Date Returned</th>
+                    <th scope="col" class="col-sm-3">Action</th>
+                  </tr>
+                </thead>  
+                    <tbody>
+                      {% for book in returned %}
+                      <tr>
+                        <th scope="row">{{loop.index}}</th>
+                        <td>{{book.title}}</td>
+                        <td>{{book.user_id}}</td>
+                        <td><p id = "date">{{book.date_returned}}</p></td>
+                        <td><a class="btn btn-info" href="/view/{{book.book_id}}" role = "button">View</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>
+              {% else %}
+              <p>No returned books</p>
+              {% endif %}
+          </div>
+          </div>
+        </div>
+        </div>
+    </div>
+
+{% endblock %}

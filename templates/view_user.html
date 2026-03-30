@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}{{user_name}}{% endblock %}
+
+
+{% block body %}
+
+    <div id="main">
+        <div id="canvas">
+            <br/>
+            {% include 'searchbar.html' %}
+            <br/>
+            {% if books %}
+            <h1 style="text-align: center;">{{user_name}}</h1>
+            <div id="trans-table" style="margin-left: 100px; margin-right: 75px">
+                <table class="table align-middle">
+                    <thead>
+                    <tr>
+                        <th scope="col">S. No</th>
+                        <th scope="col">Book Title</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Date Requested</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for book in books %}
+                    <tr>
+                        <th scope="row">{{loop.index}}</th>
+                        <td>{{book.title}}</td>
+                        <td>{{book.status}}</td>
+                        <td><p id = "date">{{book.date_requested}}</p></td>
+                        <td><a class="btn btn-info" href="/view/{{book.book_id}}" role = "button">View</a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+            </div>
+            <br/>
+            {% if reviews %}
+            <div id = "reviews">
+                {% for rev in reviews %}
+                <h2>{{loop.index}}. Rating: {{rev.rating}}</h2>
+                {% for i in range(rev.rating) %}
+                <img src = "/static/star.png" style ="height: 50px;">
+                {% endfor %}
+                <h5>Review:</h5>
+                <p>{{rev.review}}</p>
+                {% endfor %}
+            </div>
+            {% else %}
+            <br/>
+            <p style="margin-left: 200px;">There are no reviews yet.</p>
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}

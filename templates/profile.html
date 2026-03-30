@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Add Section{% endblock %}
+
+
+{% block body %}
+        <div id = "main">
+            <div id = "background-canvas">
+            <div id = "canvas">
+                <div id = "add-body">
+                    <h1 style="text-align: center;">Edit Profile</h1>
+                    <br/>
+                    {% if message %}
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>{{message}}</strong>
+                      </div>
+                    {% endif %}
+                    <form action="/profile" method="post">
+                        <form >
+                        <div class="form-floating mb-3">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" placeholder="Title"  name="name" value = "{{user.name}}">
+                            <label for="floatingInput">Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" type="text" name="old_password" required = "">
+                            <label for="floatingPassword">Old Password</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" type="text" name="new_password">
+                            <label for="floatingPassword">New Password</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" type="text" name="confirm_new_password">
+                            <label for="floatingPassword">Confirm New Password</label>
+                        </div>
+                        <div style="text-align: center;">
+                            <a class="btn btn-danger" href="/dashboard" role="button">Cancel</a>
+                            <input class="btn btn-success" type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+
+{% endblock %}

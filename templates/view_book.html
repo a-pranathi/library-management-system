@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}{{book.title}}{% endblock %}
+
+
+{% block body %}
+        <div id="navbar"></div>
+        <br/>
+        <div id="main">
+            <div id="background-canvas">
+            <div id="canvas">
+            <div id="whiter">
+                <br/>
+                <br/>
+                <h1 style="text-align: center;">{{book.title}}</h1>
+                <br/>
+                <div style = "margin-left: 125px; margin-right: 125px">
+                    <div class = "row">
+                        <div class = "col-4">
+                            <h3 class="card-text">Author: {{book.author}}</h3>
+                            <h5 class="card-text">ISBN: {{book.isbn_no}}</h5>
+                            <h6 class="card-text">Language: {{book.lang}}</h6>
+                            <h6 class="card-text">Number of pages: {{book.pages}}</h6>
+                            <h6 class="card-text">Number of available copies: {{book.availablecopies}}</h6>
+                        </div>
+                        <div class = "col">
+                            <h5 class="card-text">Description:</h5>
+                            <p >{{book.description}}</p>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <hr/>
+                <br/>
+                <h1 style="text-align: center;">Reviews</h1>
+                {% if reviews %}
+                <div id = "reviews">
+                    {% for rev in reviews %}
+                    <h2>{{loop.index}}. Rating: {{rev.rating}}</h2>
+                    {% for i in range(rev.rating) %}
+                    <img src = "/static/star.png" style ="height: 50px;">
+                    {% endfor %}
+                    <h5>Review:</h5>
+                    <p>{{rev.review}}</p>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <br/>
+                <p style="margin-left: 200px;">There are no reviews yet.</p>
+                {% endif %}
+                <br/>
+                {% if admin %}
+                    {% if info %}
+                    <hr/>
+                    <br/>
+                    <h1 style="text-align: center;">Borrowers</h1>
+                    <div id="trans-table" style="margin-left: 100px; margin-right: 75px">
+                        <table class="table align-middle">
+                        <thead>
+                            <tr>
+                            <th scope="col">S. No</th>
+                            <th scope="col">User Name</th>
+                            <th scope="col">User ID</th>
+                            <th scope="col">Date Issued</th>
+                            <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in info %}
+                            <tr>
+                            <th scope="row">{{loop.index}}</th>
+                            <td>{{user.username}}</td>
+                            <td>{{user.user_id}}</td>
+                            <td><p id = "date">{{user.date_issued}}</p></td>
+                            <td><a class="btn btn-info" href="/view/user/{{user.user_id}}" role = "button">View</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        </table>
+                    </div>
+                    {% endif %}
+                {% endif %}
+                <br/>
+                {% if (purchased or admin) %}
+                <div style="text-align: center;">
+                    <p>Click <a href = "/download/{{book.book_id}}">here</a> to download.</p>
+                </div>
+                {% endif %}
+                {% if (borrowed or admin or purchased) %}
+                <div style="text-align: center;">
+                    <embed src= "/download/{{book.book_id}}#toolbar=0" width="800" height="500"> 
+                </div>
+                {% endif %}
+            </div>
+            </div>
+        </div>
+        <br>
+        </div>
+{% endblock %}

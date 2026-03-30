@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Sections{% endblock %}
+
+
+{% block body %}
+
+    <div id="main">
+        <div id="background-canvas">
+        <div id="canvas">
+            <h1 style="text-align: center;">Sections</h1>
+            <br/>
+            {% include 'searchbar.html' %}
+            <br/>
+            {% if sections %}
+                </br>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    {% for section in sections %}
+                        {% include 'section.html' %}
+                    {% endfor %}
+
+                </div>
+            {% else %}
+                <p>No sections yet.</p>
+            {% endif %}
+            <br/>
+        </div>
+        <br/>
+        {% if admin %}
+        <div style="text-align: center;">
+            <a href="/add_section"><img src="/static/add.png" alt="Add Book" height = 125></a>
+        </div>
+        <br/><br/>
+        {% endif %}
+    </div>
+    </div>
+
+{% endblock %}

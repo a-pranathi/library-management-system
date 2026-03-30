@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Edit Section {{section.name}}{% endblock %}
+
+
+{% block body %}
+        <div id = "main">
+            <div id = "canvas">
+                <div id = "add-body">
+                    <h1 style="text-align: center;">Edit Section</h1>
+                    <br/>
+                    <form action="{{ section.section_id}}" method="post">
+                        <form >
+                        <div class="form-floating mb-3">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" placeholder=Title"" name="section_name" required="" value = "{{section.name}}">
+                            <label for="floatingInput">Name</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1 validationDefault01" class="form-label">Description:</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1 validationDefault01" rows="5" name="description" required="">{{section.description}}</textarea>
+                        </div>
+                        <div style="text-align: center;">
+                            <a class="btn btn-danger" href="/sections" role="button">Cancel</a>
+                            <input class="btn btn-success" type="submit" value="Save Changes">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

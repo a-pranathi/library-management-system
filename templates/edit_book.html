@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Edit Book Details{{book.title}}{% endblock %}
+
+
+{% block body %}
+        <div id = "main">
+            <div id = "background-canvas">
+            <div id = "canvas">
+                <div id = "add-book-body" style="overflow-y:auto;">
+                    <h1 style="text-align: center;">Edit Book Details</h1>
+                    <br/>
+                    <form action="{{section_id}}" method="post" enctype="multipart/form-data">
+                        <div class="form-floating mb-2">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" required=""name="title" value = "{{book.title}}">
+                            <label for="floatingInput">Title</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" required="" name="author" value = "{{book.author}}">
+                            <label for="floatingInput">Author</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" required="" name="isbn_no" value = "{{book.isbn_no}}">
+                            <label for="floatingInput">ISBN no</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" required="" name="lang" value = "{{book.lang}}">
+                            <label for="floatingInput">Language</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" type = "number" required="" name="pages" value = "{{book.pages}}">
+                            <label for="floatingInput">Number of Pages</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" type = "number" required="" name="copies" value = "{{book.copies}}">
+                            <label for="floatingInput">Number of Copies</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" type = "number" step="0.01" required="" name="price" value = "{{book.price}}">
+                            <label for="floatingInput">Price</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Select file</label>
+                            <input class="form-control" type="file" id="formFile" name = "file">
+                          </div>
+                        <select class="form-select" aria-label="Default select example" name="section">
+                            <option selected>Select section</option>
+                            {% for sec in sections %}
+                            <option value="{{sec.name}}">{{sec.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="mb-2">
+                            <label for="exampleFormControlTextarea1 validationDefault01" class="form-label">Description:</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1 validationDefault01" style="overflow:scroll;" rows="3" name="description" required="" value = "{{book.description}}">{{book.description}}</textarea>
+                        </div>
+                        <div style="text-align: center;">
+                            <a class="btn btn-danger" href="/sections" role="button">Cancel</a>
+                            <input class="btn btn-success" type="submit" value="Save Changes">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+
+{% endblock %}

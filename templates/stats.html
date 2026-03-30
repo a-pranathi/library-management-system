@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Stats{% endblock %}
+
+{% block body %}
+        <div id="main">
+            <div id="background-canvas">
+            <div id="canvas">
+              <br/>
+              <h1 style="text-align: center;">Stats</h1>
+              {% include 'searchbar.html' %}
+                <br/>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="card">
+                        <img src="/static/number_of_books.png" class="card-img-top" alt="Number of Books">
+                        <div class="card-body">
+                            <h5 class="card-title">Number of Copies</h5>
+                            <a href="/latest_books" class="btn btn-primary">Latest books</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="card">
+                    <img src="/static/sections.png" class="card-img-top" alt="Section Distribution">
+                    <div class="card-body">
+                      <h5 class="card-title">Section Distribution</h5>
+                      <a href="/sections" class="btn btn-primary">View Sections</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="card">
+                    <img src="/static/section_wise_copies.png" class="card-img-top" alt="Section Distribution">
+                    <div class="card-body">
+                      <h5 class="card-title">Section Wise Copies</h5>
+                      <a href="/sections" class="btn btn-primary">View Sections</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="card">
+                    <img src="/static/number_of_pages.png" class="card-img-top" alt="Section Distribution">
+                    <div class="card-body">
+                      <h5 class="card-title">Number of Pages</h5>
+                      <a href="/latest_books" class="btn btn-primary">Latest books</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
+{% endblock %}

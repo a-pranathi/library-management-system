@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Add Book{% endblock %}
+
+
+{% block body %}
+
+<div id = "main">
+    <div id = "background-canvas">
+        <div id = "canvas">
+            <div id = "add-body">
+                <br/>
+                <br/>
+                <h1 style="text-align: center;">Issue Book</h1>
+                <br/>
+                <form action="/issue/{{checkout.checkout_id}}" method="post">
+                    <p><strong>Checkout ID:</strong> {{checkout.checkout_id}}</p>
+                    <p><strong>Book Title:</strong> {{checkout.title}}</p>
+                    <p><strong>Username:</strong> {{user.username}}</p>
+                    <p><strong>Name:</strong> {{user.name}}</p>
+
+                    <select class="form-select" aria-label="Default select example" name="numberOfDays">
+
+                        {% for time in issueDays %}
+                        <option value="{{time}}">{{time}}</option>
+                        {% endfor %}
+                    </select>
+                    <br/>
+                    <div style="text-align: center;">
+                        <a class="btn btn-danger" href="/sections" role="button" >Cancel</a>
+                        <input class="btn btn-success" type="submit" value="Issue">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

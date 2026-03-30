@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+
+{% block body %}
+        <div id="navbar"></div>
+        <br/>
+        <div id="main">
+            <div id="background-canvas">
+            <div id="canvas">
+                <br/>
+                {% include 'searchbar.html' %}
+                <br/>
+                <h1 class="headings" style="text-align: center;">Pending Book Requests</h1>
+            <br/>
+            <div id="trans-table">
+                {% if requests %}
+                <table class="table align-middle">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="col-sm-1 bg-light bg-opacity-50">S. No</th>
+                      <th scope="col" class="col-sm-4 bg-light bg-opacity-50">Book Name</th>
+                      <th scope="col" class="col-sm-2 bg-light bg-opacity-50">Date Requested</th>
+                      <th scope="col" class="col-sm-2 bg-light bg-opacity-50">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for book in requests %}
+                    <tr>
+                      <th scope="row" class = "bg-light bg-opacity-50">{{loop.index}}</th>
+                      <td class = "bg-light bg-opacity-50">{{book.title}}</td>
+                      <td class = "bg-light bg-opacity-50"><p id = "date">{{book.date_requested}}</p></td>
+                      <td class = "bg-light bg-opacity-50"><a class="btn btn-info" href="/view/{{book.book_id}}" role = "button">View</a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                {% else %}
+                <p>No pending books to be issued.</p>
+                {% endif %}
+            </div>
+            <br/>
+                <h1 style="text-align: center;">Current Books</h1>
+                {% if current_books %}
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    {% for book in current_books %}
+                    <div class="col">
+                        <div class="card" style="border-radius: 5%">
+                            <div class="card-body">
+                                <div class="card-text" style="transform: rotate(0);">
+                                    <a class="stretched-link" href="/view/{{ book.book_id }}"></a>            
+                                    <u><h2 class="card-title" style="text-align: center;">{{book.title}}</h2></u>
+                                    <h5 class="card-text">Author: {{book.author}}</h5>
+                                    <h6 class="card-text">ISBN: {{book.isbn_no}}</h6>
+                                    <h6 class="card-text">Number of available copies: {{book.availablecopies}}</h6>
+                                    <h6 class="card-text">Description:</h6>
+                                    <p id = "limited-content">{{book.description}}</p>
+                                </div>
+                                <div style="text-align: center;">
+                                    <a class="btn btn-info" href="/view/{{book.book_id}}" role="button">View</a>
+                                    <a class="btn btn-info" href="/return/{{book.checkout_id}}" role="button">Return</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p>You don't have any books currently</p>
+                {% endif %}
+                <br/>
+                <br/>
+                <h1 style="text-align: center;">Purchased Books</h1>
+                {% if purchased_books %}
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    {% for book in purchased_books %}
+                    <div class="col">
+                        <div class="card" style="border-radius: 5%">
+                            <div class="card-body">
+                                <div class="card-text" style="transform: rotate(0);">
+                                    <a class="stretched-link" href="/view/{{ book.book_id }}"></a>            
+                                    <u><h2 class="card-title" style="text-align: center;">{{book.title}}</h2></u>
+                                    <h5 class="card-text">Author: {{book.author}}</h5>
+                                    <h6 class="card-text">ISBN: {{book.isbn_no}}</h6>
+                                    <h6 class="card-text">Number of available copies: {{book.availablecopies}}</h6>
+                                    <h6 class="card-text">Description:</h6>
+                                    <p id = "limited-content">{{book.description}}</p>
+                                </div>
+                                <div style="text-align: center;">
+                                    <a class="btn btn-info" href="/download/{{book.book_id}}" role="button">Download</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p>You haven't purchased any books</p>
+                {% endif %}
+                <hr/>
+                <br/>
+                <h1 style="text-align: center;">Completed Books</h1>
+                {%if borrowed %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>You didn't borrow book!</strong>If you want to review then borrow it first.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% elif reviewed %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>You already reviewed this book!</strong> You should check in on some of those fields below.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+                {% if returned_books %}
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    {% for book in returned_books %}
+                        <div class="col">
+                            <div class="card" style="border-radius: 5%">
+                                <div class="card-body">
+                                    <div class="card-text" style="transform: rotate(0);">
+                                        <a class="stretched-link" href="/view/{{ book.book_id }}"></a>            
+                                        <u><h2 class="card-title" style="text-align: center;">{{book.title}}</h2></u>
+                                        <h5 class="card-text">Author: {{book.author}}</h5>
+                                        <h6 class="card-text">ISBN: {{book.isbn_no}}</h6>
+                                        <h6 class="card-text">Number of available copies: {{book.availablecopies}}</h6>
+                                        <h6 class="card-text">Description:</h6>
+                                        <p id = "limited-content">{{book.description}}</p>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <a class="btn btn-info" href="/view/{{book.book_id}}" role="button">View</a>
+                                        <a class="btn btn-info" href="/review/{{book.book_id}}" role="button">Review</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p>You haven't completed any books</p>
+                {% endif %}
+                <br/>
+            </div>
+            </div>
+        </div>
+
+{% endblock %}

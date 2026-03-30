@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Payment{% endblock %}
+
+
+{% block body %}
+<div id="main">
+    <div id="canvas">
+        <div id = "add-body">
+            <br/>
+            <h1 style="text-align: center;">Purchase {{book.title}}</h1>
+            <br/>
+            <form action="/purchase/{{book.book_id}}" method="post">
+                <h4 style="text-align: center;">Price: {{book.price}}</h4>
+                <br/>
+                <p style="text-align: center;">Do you want to purchase this book?</p>
+                <div style="text-align: center;">
+                    <a class="btn btn-danger" href="/dashboard" role="button" >Cancel</a>
+                    <input class="btn btn-success" type="submit" value="Purchase">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

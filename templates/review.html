@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Book Review{% endblock %}
+
+
+{% block body %}
+
+    <div id = "main">
+        <div id = "canvas">
+            <div id = "add-body">
+                <h2 style="text-align: center;">Review {{title}}</h2>
+                <form action="{{book_id}}" method="post">
+                    <form >
+                    <div class="form-floating mb-3">
+                        <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" placeholder="Rating" required="" type = "number" name="rating" min="1" max="5">
+                        <label for="floatingInput">Rating</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1 validationDefault01" class="form-label">Review:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1 validationDefault01" rows="5" name="review_text"></textarea>
+                    </div>
+                    <div style="text-align: center;">
+                        <a class="btn btn-danger" href="/user_dash" role="button">Cancel</a>
+                        <input class="btn btn-success" type="submit" value="Add">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

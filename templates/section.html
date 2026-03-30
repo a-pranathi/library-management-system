@@ -1,0 +1,28 @@
+<div class="col">
+    <div class="card" style="border-radius: 5%">
+        <div class="card-body">
+            <div class="card-text" style="transform: rotate(0);">
+                <br/>
+                <a class="stretched-link" href="/{{section.section_id}}/books"></a>
+                <strong><h2 class="card-title" style="text-align: center;">{{ section.name }}</h2></strong>
+                <h5 class="card-text">Description: </h5>
+                <div id="limited-content">
+                    <p class="card-text">{{section.description}}</p>
+                </div>
+                <br/>
+            </div>
+            {% if admin %}
+            <p class = "card-text">
+                <div style="text-align: center;">
+                    <a class="btn btn-success" href="/add_book/{{ section.section_id }}" role="button">Add Book</a>
+                    <a class="btn btn-primary" href="/edit_section/{{ section.section_id }}" role="button">Edit</a>
+                    <form action="/section/{{ section.section_id }}/delete" onSubmit="return confirm('Delete section? \n This action cannot be undone');">
+                        <p></p>
+                        <input class="btn btn-danger" type="submit" value="Delete">
+                    </form>
+                </div>
+            </p>
+            {% endif %}
+        </div>
+      </div>
+</div>

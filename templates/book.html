@@ -1,0 +1,27 @@
+<div class="col">
+    <div class="card" style="border-radius: 5%">
+        <div class="card-body">
+            <div class="card-text" style="transform: rotate(0);">
+                <a class="stretched-link" href="/view/{{ book.book_id }}"></a>            
+                <u><h2 class="card-title" style="text-align: center;">{{book.title}}</h2></u>
+                <h5 class="card-text">Author: {{book.author}}</h5>
+                <h6 class="card-text">ISBN: {{book.isbn_no}}</h6>
+                <h6 class="card-text">Number of available copies: {{book.availablecopies}}</h6>
+                <h6 class="card-text">Description:</h6>
+                <p id = "limited-content">{{book.description}}</p>
+            </div>
+            <div style="text-align: center;">
+                    {% if admin %}
+                        <a class="btn btn-success" href="/edit_book/{{ book.book_id }}" role="button">Edit</a>
+                        <form action="/book/{{ book.book_id }}/delete" onSubmit="return confirm('Delete book? \n This action cannot be undone');">
+                            <p></p>
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                    {% else %}
+                        <a class="btn btn-info" href="/request/{{book.book_id}}" role="button">Request</a>
+                        <a class="btn btn-info" href="/purchase/{{book.book_id}}" role="button">Purchase</a>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

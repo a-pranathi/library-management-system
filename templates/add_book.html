@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Add Book{% endblock %}
+
+
+{% block body %}
+        <div id = "main">
+            <div id = "background-canvas">
+            <div id = "canvas">
+                <div id = "add-book-body" style="overflow-y:auto;">
+                    <h1 style="text-align: center;">Add New Book</h1>
+                    <br/>
+                    
+                    <form action="{{section_id}}" method="post" enctype="multipart/form-data">
+                        <div class="form-floating mb-2">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" required=""name="title">
+                            <label for="floatingInput">Title</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" required="" name="author">
+                            <label for="floatingInput">Author</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" type = "number" required="" name="isbn_no">
+                            <label for="floatingInput">ISBN no</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" required="" name="lang">
+                            <label for="floatingInput">Language</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" type = "number" required="" name="pages">
+                            <label for="floatingInput">Number of Pages</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" type = "number" required="" name="copies">
+                            <label for="floatingInput">Number of Copies</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input for="validationDefault01" class="form-control" id="floatingInput validationDefault01" type = "number" step="0.01" required="" name="price">
+                            <label for="floatingInput">Price</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Select file</label>
+                            <input class="form-control" type="file" id="formFile" name = "file" required="">
+                          </div>
+                        <div class="mb-2">
+                            <label for="exampleFormControlTextarea1 validationDefault01" class="form-label">Description:</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1 validationDefault01" style="overflow:scroll;" rows="3" name="description" required=""></textarea>
+                        </div>
+                        <div style="text-align: center;">
+                            <a class="btn btn-danger" href="/{{section_id}}/books" role="button" >Cancel</a>
+                            <input class="btn btn-success" type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+
+{% endblock %}
