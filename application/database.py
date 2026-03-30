@@ -1,8 +1,6 @@
 """
 File:    database.py
-Author1: Pranathi Ayyadevara
-Roll No: 22f3001788
-Course:  MAD 1 Project - LMS
+Author: Pranathi Ayyadevara
 Summary of File:
 	This file contains code which creates the database connection
 """
