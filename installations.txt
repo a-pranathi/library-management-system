@@ -1,0 +1,7 @@
+pip install flask
+pip install APScheduler
+pip install Flask-SQLAlchemy
+pip install Flask-Login
+pip install Flask-RESTful
+pip install numpy
+pip install matplotlib
